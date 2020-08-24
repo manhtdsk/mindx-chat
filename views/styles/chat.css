@@ -1,0 +1,17 @@
+#placeholder {
+    display: none;
+    /* 0.5 là độ trong suốt */
+    /* opacity: 1; */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#placeholder.visble {
+    display: block;
+}
+
+.bg-white {
+    background-color: white;
+}

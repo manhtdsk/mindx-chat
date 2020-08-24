@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <!-- file naỳ chứa sourcode authen -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <!-- dịch vị file store -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyA8N4JWp_BswQZYCJX-DMKakK6VgemkWOk",
+            authDomain: "mindx-46.firebaseapp.com",
+            databaseURL: "https://mindx-46.firebaseio.com",
+            projectId: "mindx-46",
+            storageBucket: "mindx-46.appspot.com",
+            messagingSenderId: "559105299808",
+            appId: "1:559105299808:web:37b43951680e476ab27a05"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //khoi tao
+        const db=firebase.firestore()
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindX chat</title>
+    <link rel="stylesheet" href="./views/styles/index.css">
+
+</head>
+
+<body>
+    <div id='app'>
+        <login-screen></login-screen>
+        <p>MindX Chat Appppppppppppppp</p>
+    </div>
+
+</body>
+<!-- Login screen: start -->
+
+<template id='loginScreen'>
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="text-head-md">
+        MindX Firebase chat app
+    </div>
+
+    <form id='formLogin'>
+        <form-input name='email' type="text" label="Email" placeholder='Hãy nhập email của bạn'></form-input>
+        <form-input name='password' type="password" label="Password" placeholder='Hãy nhập mật khẩu'></form-input>
+        <div class="justify-space-betwewn">
+            <button type="submit" class="btn-primary btn">Login</button>
+            <span class="link" id='linkToRegister'>Register now!</span>
+        </div>
+
+    </form>
+
+
+</template>
+<!-- Login screen: end -->
+
+<!-- Register screen: start -->
+<template id='registerScreen'>
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div class="text-head-md">
+        MindX Firebase chat app
+    </div>
+
+    <form id='formRegister'>
+        <form-input type="text" label="Email" placeholder='Vui lòng điền email của bạn' name='email'></form-input>
+        <form-input type="text" label="Display Name" placeholder='Hãy chọn tên hiển thị của bạn' name='displayName'>
+        </form-input>
+
+        <form-input type="password" label="Password" placeholder='Hãy nhập mật khẩu của bạn' name='password'>
+        </form-input>
+        <form-input type="password" label="Confirm Password" placeholder='Hãy xác nhận lại mật khẩu'
+            name='confirmPassword'></form-input>
+
+        <div class="d-flex">
+            <button type="submit" class="btn-primary btn">Register</button>
+            <span class="link" id='linkToLogin'>Login now!</span>
+        </div>
+
+    </form>
+
+
+</template>
+<!-- Register screen: end -->
+
+<!-- Chat screen start -->
+<template id='chatScreen'>
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <link rel="stylesheet" href="./views/styles/chat.css">
+    <div class="d-flex flex-column h-100">
+        <div id='placeholder'></div>
+        <div class="d-flex">
+            <button class="btn btn-primary" id="btnShowCon">Show</button>
+            <h2 class="flex-1">This is title</h2>
+            <button class="btn btn-primary" id="btnShowMem">Member</button>
+        </div>
+
+        <div class="flex-1">
+
+            This is chat box
+        </div>
+
+        <div>
+            This is composer
+        </div>
+    </div>
+</template>
+<!-- Chat screen end -->
+
+<!-- Conversation-list start -->
+<template id="conversationList">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <link rel="stylesheet" href="./views/styles/chat.css">
+
+    <div class="h-100 w-75 bg-white">
+        <button class="btn btn-primary" id="btnCreateCon">Create conversation</button>
+        <div id="conList"></div>
+    </div>
+    
+
+</template>
+<!-- Conversation-list end -->
+
+<!-- conversationForm start -->
+<template id="conversationForm">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <link rel="stylesheet" href="./views/styles/chat.css">
+
+    <div class="h-100 w-75 bg-white js-stopClick">
+        <form id="form">
+            <form-input label='Name' type='text' name='name'></form-input>
+            <form-input label='Member' type='text' name='member'></form-input>
+            <div class="d-flex justify-space-between align-center">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-secondary">Back</button>
+            </div>
+        </form>
+    </div>
+</template>
+<!-- conversationForm end -->
+
+<!-- conversation item start -->
+<template id="conversationItem">
+    <link rel="stysheet" href="./views/styles/index.css">
+    <div class="d-flex justify-space-betwewn p-md">
+        <h3 id="name"></h3>
+        <!-- <p><span id=noOfMems></span>&nbsp;Members</p> -->
+        <p><small id=noOfMems></small></p>
+    </div>
+</template>
+<!-- conversation item end -->
+
+<!-- form-input start -->
+<template id="formInput">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div id='container' class="input-container line-break">
+        <input id='input' class="input" />
+        <label id='label'></label>
+
+    </div>
+    <div class="errorMsg" id='errorMsg'></div>
+</template>
+
+<!-- form-input end -->
+
+
+<script src="./index.js" type="module"></script>
+
+</html>

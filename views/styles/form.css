@@ -1,0 +1,76 @@
+.input{
+    padding: 10px;
+    border: 0px;
+    border-bottom: 1px solid seagreen;
+    
+    outline: none;
+}
+
+.input:focus{
+    border-bottom: 2px solid cyan;
+
+}
+
+.input+label{
+    color: gray;
+}
+
+.input:focus ~ label{
+    color: darkcyan;
+    
+}
+.input-container{
+    margin: 10px 0px ;
+}
+
+/* một thẻ phải có đủ 2 class này (cách nhau bằng dấu .) */
+.input-container.line-break{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+/* thằng label là con trực tiếp có 2 class như dưới */
+.input-container.line-break>label{
+    margin-bottom: 10px;
+}
+
+.btn{
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+.btn-primary{
+    color: yellowgreen;
+    background-color: lightcyan;
+}
+
+.btn-primary:hover{
+    color: red;
+    background-color: cyan;
+    cursor: pointer;
+}
+
+.link{
+    color: darkcyan;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link:hover{
+    color: cyan;
+}
+
+#container.error >input{
+    color: red;
+    border-color: red;
+}
+#container.error >label{
+    color: red;
+    border-color: red;
+}
+
+/* style cho thẻ div ngay sau thẻ có id là container,,chính là thẻ error */
+#container.error + div{
+    color: red;
+    border-color: red;
+}
