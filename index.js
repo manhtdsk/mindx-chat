@@ -7,6 +7,7 @@ import './views/components/form-input.js'
 import './views/components/con-form.js'
 import './views/components/con-list.js'
 import './views/components/con-item.js'
+import './views/components/message.js'
 
 import './models/auth.js'
 

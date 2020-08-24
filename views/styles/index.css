@@ -29,3 +29,19 @@ body {
 .p-md{
     padding: 10px;
 }
+.overflow-auto{
+    overflow: auto;
+}
+.hover:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
+.border{
+    border: 1px solid red;
+}
+.rounded{
+    border-radius: 20%;
+}
+.mt-sm{
+    margin-top: 5px;
+}

@@ -5,3 +5,14 @@
 .flex-1{
     flex: 1;
 }
+.justify-end{
+    justify-content: flex-end;
+
+}
+.bg-secondary{
+    background-color: chartreuse;
+}
+.bg-primary{
+    background-color: lightcyan;
+    color: red;
+}

@@ -18,7 +18,8 @@ class ConList extends HTMLElement {
         if (name === 'list') {
             this.$conList.innerHTML = ""
             JSON.parse(newVal).forEach(item => {
-                this.addCon(item.name, item.member.length)
+                console.log(item)
+                this.addCon(item.name, item.member.length, item.id)
             })
         }
     }
@@ -31,10 +32,11 @@ class ConList extends HTMLElement {
         })
     }
     //function trong class k caafn twf khoas function
-    addCon(name, noOfMems) {
+    addCon(name, noOfMems,id) {
         const conItem = document.createElement('con-item')
         conItem.name = name
         conItem.noOfMems = noOfMems
+        conItem.id=id
         this.$conList.appendChild(conItem)
     }
 

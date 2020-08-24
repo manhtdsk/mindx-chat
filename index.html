@@ -104,13 +104,16 @@
             <button class="btn btn-primary" id="btnShowMem">Member</button>
         </div>
 
-        <div class="flex-1">
+        <div class="flex-1" id="messageList">
 
             This is chat box
         </div>
 
         <div>
-            This is composer
+            <form id="chatForm">
+                <form-input type='text' name='message' > </form-input>
+                <button type="submit" class="btn btn-primary">SEND</button>
+            </form>
         </div>
     </div>
 </template>
@@ -121,7 +124,7 @@
     <link rel="stylesheet" href="./views/styles/index.css">
     <link rel="stylesheet" href="./views/styles/chat.css">
 
-    <div class="h-100 w-75 bg-white">
+    <div class="h-100 w-75 bg-white overflow-auto js-stopClick">
         <button class="btn btn-primary" id="btnCreateCon">Create conversation</button>
         <div id="conList"></div>
     </div>
@@ -150,14 +153,27 @@
 
 <!-- conversation item start -->
 <template id="conversationItem">
-    <link rel="stysheet" href="./views/styles/index.css">
-    <div class="d-flex justify-space-betwewn p-md">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div id="container" class="d-flex justify-space-between p-md hover">
         <h3 id="name"></h3>
         <!-- <p><span id=noOfMems></span>&nbsp;Members</p> -->
         <p><small id=noOfMems></small></p>
     </div>
 </template>
 <!-- conversation item end -->
+
+<!-- message start -->
+<template id="message">
+    <link rel="stylesheet" href="./views/styles/index.css">
+    <div id="container " class="d-flex">
+        <div id="msgcontainer" class="p-md border rounded mt-sm">
+            <p id="content"></p>
+        <small id="displayName"></small>
+        </div>
+        
+    </div>
+</template>
+<!-- message end -->
 
 <!-- form-input start -->
 <template id="formInput">
