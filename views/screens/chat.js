@@ -72,7 +72,7 @@ class ChatScreen extends HTMLElement {
                 myMsg.displayName=data.sender.displayName
 
                 if(data.sender.email===firebase.auth().currentUser.email){
-                    myMsg.isMine=true
+                    myMsg.ismine=true
                 }
                 // msgDiv.innerHTML = data.content
                 this.$messageList.appendChild(myMsg)

@@ -10,9 +10,9 @@
 
 }
 .bg-secondary{
-    background-color: chartreuse;
+    background-color: rgb(255, 217, 0);
 }
 .bg-primary{
-    background-color: lightcyan;
+    background-color: rgb(158, 235, 34);
     color: red;
 }

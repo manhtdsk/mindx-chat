@@ -10,7 +10,7 @@ class Message extends HTMLElement{
         this.$msgcontainer = this._shadowRoot.getElementById('msgcontainer')
     }
     static get observedAttributes(){
-        return['content','displayName','isMine']
+        return['content','displayName','ismine']
     }
     set content(newVal){
         this.setAttribute('content',newVal)
@@ -18,8 +18,8 @@ class Message extends HTMLElement{
     set displayName(newVal){
         this.setAttribute('displayName',newVal)
     }
-    set isMine(newVal){
-        this.setAttribute('isMine',newVal)
+    set ismine(newVal){
+        this.setAttribute('ismine',newVal)
     }
 
     attributeChangedCallback(name,oldVal,newVal){
@@ -29,9 +29,10 @@ class Message extends HTMLElement{
         if(name==='$displayName'){
             this.$displayName.innerHTML=newVal
         }
-        if(name==='isMine' && newVal){
-            this.$msgcontainer.classList.add("bg-primary")
+        if(name==='ismine' && newVal){
             this.$container.classList.add("justify-end")
+            this.$msgcontainer.classList.add("bg-primary")
+            
         }else{
             this.$msgcontainer.classList.add("bg-secondary")
         }
