@@ -6,6 +6,8 @@ export function createCon(name, member) {
             name: 'name cannot be empty'
         }
     }
+
+    
 //phần kiểm tra email đầu vào tự làm
 
 

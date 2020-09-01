@@ -1,3 +1,5 @@
+// function kiểm tra email và pass: start
+
 export const login = (email, password) => {
     const error = { email: '', password: '' }
     if (!email || !validateEmail(email)) {
@@ -18,11 +20,15 @@ export const login = (email, password) => {
             error: error,
         }
     }
+    //đăng ký email lên firebase
     firebase.auth().signInWithEmailAndPassword(email, password)
     return {
         hasError: false
     }
 }
+// function kiểm tra email và pass: end
+
+
 
 export async function register(email, displayName, password, confirmPassword) {
     const error = { email: '', displayName: '', password: '', confirmPassword: '' };
