@@ -16,3 +16,6 @@
     background-color: rgb(158, 235, 34);
     color: red;
 }
+.flex-colum-reverse{
+    flex-direction: column-reverse;
+}

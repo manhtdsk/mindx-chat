@@ -9,12 +9,22 @@ class ConList extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['list']
+        return ['list','active-id']
+    }
+    set activeId(newvl) {
+        this.setAttribute('activeId', newvl)
     }
     set list(newvl) {
         this.setAttribute('list', newvl)
     }
     attributeChangedCallback(name, oldVal, newVal) {
+        if(name=="active-id"){
+            if(oldVal==newVal) return;
+            this._shadowRoot.querySelector("#"+oldVal).active='';
+            this._shadowRoot.querySelector("#"+newVal).active=true;
+
+        }
+
         if (name === 'list') {
             this.$conList.innerHTML = ""
             JSON.parse(newVal).forEach(item => {

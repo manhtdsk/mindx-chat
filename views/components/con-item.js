@@ -5,12 +5,19 @@ class ConItem extends HTMLElement {
         this._shadowRoot.appendChild(document.getElementById('conversationItem').content.cloneNode(true))
         this.$name = this._shadowRoot.querySelector('#name')
         this.$noOfMems = this._shadowRoot.querySelector('#noOfMems')
-        this.$container=this._shadowRoot.querySelector('#container')
+        this.$container = this._shadowRoot.querySelector('#container')
     }
 
     static get observedAttributes() {
-        return ['name', 'no-of-mems',"id"]
+        return ['name', 'no-of-mems', "id", "active"]
     }
+    set active(newvl) {
+        this.setAttribute('active', newvl)
+    }
+    get active() {
+        return this.getAttribute('active')
+    }
+
     set id(newvl) {
         this.setAttribute('id', newvl)
     }
@@ -34,16 +41,15 @@ class ConItem extends HTMLElement {
         this.$name.innerHTML = this.name
         this.$noOfMems.innerHTML = this.noOfMems
     }
-    connectedCallback(){
-        this.$container.addEventListener('click',(event)=>{
-            event.stopPropagation()
-            // console.log(this.id)
-            //đẩy ra even changeActiveCon
-            const e=new CustomEvent('changeActiveCon',{
-                detail:{
-                    id:this.id
-                }
+    connectedCallback() {
+        this.$container.addEventListener('click', (event) => {
+            const changeActiveConEvent = new CustomEvent('changeActiveCon', {
+                composed: true,
+                detail: {
+                    id: this.id
+                },
             })
+            this.dispatchEvent(changeActiveConEvent)
         })
     }
 }

@@ -8,6 +8,7 @@ class ChatScreen extends HTMLElement {
         this.$btnShowCon = this._shadowRoot.querySelector('#btnShowCon')
         this.$btnShowMem = this._shadowRoot.querySelector('#btnShowMem')
         this.$placeHolder = this._shadowRoot.querySelector('#placeholder')
+        this.$txtTitle= this._shadowRoot.querySelector('#txtTitle')
 
         this.$btnShowCon.addEventListener('click', () => {
             this.$placeHolder.classList.add('visble')
@@ -29,6 +30,12 @@ class ChatScreen extends HTMLElement {
         $conList.addEventListener('create-con', () => {
             console.log('hello')
             this.showCreateConForm()
+        })
+        $conList.addEventListener("changeActiveCon", () => {
+           this.activeCon=event.detai.id;
+           const selected=  this.conList.find((con)=>con.id==this.activeCon);
+           this.$txtTitle.innerHTML=selected
+
         })
         this.$placeHolder.appendChild($conList)
     }
@@ -64,15 +71,16 @@ class ChatScreen extends HTMLElement {
             });
         });
 
-        db.collection("messages").onSnapshot((querySnapshot) => {
+        db.collection("messages").orderBy("createdAt").onSnapshot((querySnapshot) => {
             querySnapshot.docChanges().forEach((change) => {
+                if (change.type !== "added") return;
                 const data = change.doc.data()
                 const myMsg = document.createElement('my-message')
-                myMsg.content=data.content
-                myMsg.displayName=data.sender.displayName
+                myMsg.content = data.content
+                myMsg.displayName = data.sender.displayName
 
-                if(data.sender.email===firebase.auth().currentUser.email){
-                    myMsg.ismine=true
+                if (data.sender.email === firebase.auth().currentUser.email) {
+                    myMsg.ismine = true
                 }
                 // msgDiv.innerHTML = data.content
                 this.$messageList.appendChild(myMsg)

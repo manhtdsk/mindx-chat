@@ -30,7 +30,9 @@ export function sendMsg(content, conId){
         sender: {
             email: firebase.auth().currentUser.email,
             displayName: firebase.auth().currentUser.displayName,
-        }
+        },
+        
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     }
     db.collection("messages").add(mesDoc)
 }
