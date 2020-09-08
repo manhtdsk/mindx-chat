@@ -20,7 +20,7 @@ export const login = (email, password) => {
             error: error,
         }
     }
-    //đăng ký email lên firebase
+    //đăng nhập email lên firebase
     firebase.auth().signInWithEmailAndPassword(email, password)
     return {
         hasError: false
